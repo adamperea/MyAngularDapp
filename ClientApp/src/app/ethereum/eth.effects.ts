@@ -43,6 +43,15 @@ export class EthEffects {
         */
 
   /*
+  based on https://medium.com/metamask/https-medium-com-metamask-breaking-change-injecting-web3-7722797916a8
+and
+  based on https://medium.com/b2expand/inject-web3-in-angular-6-0-a03ca345892
+This code use the new way to connect to the MetaMask.
+!!!The first time you use this token in your code you should call the enable method of window.ethereum :
+
+  */
+
+  /*
           based on https://medium.com/metamask/https-medium-com-metamask-breaking-change-injecting-web3-7722797916a8
           Dapps must now request access to user accounts by calling a new method on the provider: ethereum.enable().
           This method returns a Promise that’s either resolved with user accounts after user approval,
@@ -66,10 +75,7 @@ export class EthEffects {
           tap(ethAccounts =>
             console.log('User approve access to web3. User accounts are:', ethAccounts)
           ),
-          map(
-            (ethAccounts: string[]) =>
-              new fromAction.InitEthSuccess()
-          ),
+          map((ethAccounts: string[]) => new fromAction.InitEthSuccess()),
           // user reject access to web3 account
           catchError((err: any) => of(new fromAction.EthError(err)))
         );

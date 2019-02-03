@@ -5,13 +5,13 @@ import * as root from '../reducers';
 
 // based on https://ngrx.io/guide/store/selectors
 export interface State {
-    ethConnectionStatus: boolean;
+    conStatus: boolean;
     selected: string;
     accounts: string[];
 }
 
 const initialState: State  = {
-  ethConnectionStatus: false,
+  conStatus: false,
   selected: null,
   accounts: []
 };
@@ -21,7 +21,7 @@ export const reducer = (state = initialState, action: ethActions.EthActionsUnion
     switch (action.type) {
 
       case (ethActions.ActionTypes.INIT_ETH_SUCCESS): {
-        return {...state, ethConnectionStatus: true};
+        return {...state, conStatus: true};
       }
       case (ethActions.ActionTypes.GET_ACCOUNTS_SUCCESS): {
             return {...state, accounts: action.payload };
@@ -59,7 +59,7 @@ export const reducers: ActionReducerMap<EthState> = {
 export const selectEthState = createFeatureSelector<AppState, EthState>('ethState');
 export const getEthState = createSelector(selectEthState, (state: EthState) => state.eth);
 
-export const getConStatus = createSelector(getEthState, (state: State) => state.ethConnectionStatus);
+export const getConStatus = createSelector(getEthState, (state: State) => state.conStatus);
 export const getAccounts = createSelector(getEthState, (state: State) => state.accounts);
 export const getDefaultAccount = createSelector(getEthState, (state: State) => state.selected);
 

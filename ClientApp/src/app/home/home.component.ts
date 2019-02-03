@@ -22,18 +22,10 @@ export class HomeComponent implements OnInit {
   constructor(private store: Store<fromEth.AppState>) {}
 
 
-  /*
-  based on https://medium.com/metamask/https-medium-com-metamask-breaking-change-injecting-web3-7722797916a8
-and
-  based on https://medium.com/b2expand/inject-web3-in-angular-6-0-a03ca345892
-This code use the new way to connect to the MetaMask.
-!!!The first time you use this token in your code you should call the enable method of window.ethereum :
-
-  */
 
   ngOnInit() {
 
-    this.store.dispatch( new fromEth.InitEth() );
+    // this.store.dispatch( new fromEth.InitEth() );
 
   }
 

@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { EthInitGuard } from '../app/ethereum/guards/eth-init.guard';
+
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full',
+    path: '', redirectTo: '/home', pathMatch: 'full',
   },
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [EthInitGuard],
   },
 ];
 
