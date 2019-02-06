@@ -25,7 +25,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    // this.store.dispatch( new fromEth.InitEth() );
+    this.store.dispatch( new fromEth.GetAccounts() );
+    this.addresses$ = this.store.pipe(select(fromEth.getAccounts));
 
   }
 

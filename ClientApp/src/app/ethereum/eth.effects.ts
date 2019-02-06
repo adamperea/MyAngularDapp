@@ -3,6 +3,7 @@ import { AccountsService } from './eth.services';
 
 // NGRX
 import { Effect, Actions, ofType } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
 import { Observable, of, from } from 'rxjs';
 
 // Web3
@@ -19,30 +20,31 @@ export class EthEffects {
   constructor(
     private actions$: Actions<fromAction.EthActionsUnion>,
     @Inject(WEB3) private web3: Web3,
-    private accountsSrv: AccountsService
+    private accSrv: AccountsService
   ) {}
 
-  // @Effect()
-  /*
-    GetAccounts$: Observable<Action> = this.actions$
-        .ofType(GET_ACCOUNTS)
-        .pipe(
-            switchMap(() => this.accounts.getAccounts()),
-            map((accounts: string[]) => new GetAccountsSuccess(accounts)),
-            catchError((err: any) => of(new EthError(err)))
-        );
-    */
-  // @Effect({dispatch: false})
-  /*
-    SelectAccount$ = this.actions$
-        .ofType(SELECT_ACCOUNT)
-        .pipe(
-            map((action: SelectAccount) => this.accounts.defaultAccount = action.payload)
+   @Effect()
+
+    GetAccounts$: Observable<Action> = this.actions$.pipe(
+      ofType(fromAction.ActionTypes.GET_ACCOUNTS),
+      switchMap(() => this.accSrv.getAccounts().pipe(
+            map((accounts: string[]) => new fromAction.GetAccountsSuccess(accounts)),
+            catchError(err => of(new fromAction.EthError(err)))
+          )),
+
         );
 
-        */
 
-  /*
+
+  @Effect({dispatch: false})
+
+    SelectAccount$ = this.actions$.pipe(
+      ofType(fromAction.ActionTypes.SELECT_ACCOUNT),
+      map((action: fromAction.SelectAccount) => this.accSrv.defaultAccount = action.payload)
+        );
+
+
+/*
   based on https://medium.com/metamask/https-medium-com-metamask-breaking-change-injecting-web3-7722797916a8
 and
   based on https://medium.com/b2expand/inject-web3-in-angular-6-0-a03ca345892

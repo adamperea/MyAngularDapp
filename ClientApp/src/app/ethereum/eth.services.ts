@@ -7,7 +7,7 @@ import Web3 from 'web3';
 /*
 !!! here we using bindNodeCallback. To be continue with explanation and example.....
 */
-import { Observable, of, bindNodeCallback } from 'rxjs';
+import { Observable, of, from } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 
 @Injectable()
@@ -26,9 +26,16 @@ export class AccountsService {
     get defaultAccount(): string { return this.web3.eth.defaultAccount; }
     set defaultAccount(account: string) { this.web3.eth.defaultAccount = account; }
 
-    /** Returns all accounts available */
-    public getAccounts(): Observable<string[]> {
-        return bindNodeCallback(this.web3.eth.getAccounts)();
+    /** TReturns a list of accounts string[] the node controls.
+     * based on https://github.com/ethereum/wiki/wiki/JavaScript-API#web3ethaccounts
+     * // async
+        web3.eth.getAccounts(callback(error, result){ ... })
+     *
+    */
+    public getAccounts(): Observable<any> {
+       // !!! here we are using the from operator to convert Promise to Observable
+        // see https://www.learnrxjs.io/operators/creation/from.html
+        return from(this.web3.eth.getAccounts());
     }
 
     /** Get the current account */
