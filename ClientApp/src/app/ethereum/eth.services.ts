@@ -16,6 +16,13 @@ export class AccountsService {
     constructor(@Inject(WEB3) private web3: Web3) {
      }
 
+     /*
+     based on https://github.com/ethereum/wiki/wiki/JavaScript-API#web3ethdefaultaccount
+     The default address is used for the following method, for example :
+
+        web3.eth.sendTransaction()
+        (optionally you can overwrite it by specifying the from property):
+     */
     get defaultAccount(): string { return this.web3.eth.defaultAccount; }
     set defaultAccount(account: string) { this.web3.eth.defaultAccount = account; }
 
@@ -40,26 +47,6 @@ export class AccountsService {
         }
     }
 
-
-    // ..put it into effect and call from the constructor!!!!
-    /*
-    async init() {
-      if ('enable' in this.web3.currentProvider) {
-        try {
-          // Request account access if needed
-          await this.web3.currentProvider.enable();
-          // Accounts now exposed
-          // do test call
-          //this.web3.eth.sendTransaction({
-            //
-          //});
-
-        } catch (error) {
-          console.log('can not access web3 account', error);
-        }
-      }
-    }
-    */
 
 
 }
