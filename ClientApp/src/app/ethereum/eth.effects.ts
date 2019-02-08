@@ -24,7 +24,6 @@ export class EthEffects {
   ) {}
 
    @Effect()
-
     GetAccounts$: Observable<Action> = this.actions$.pipe(
       ofType(fromAction.ActionTypes.GET_ACCOUNTS),
       switchMap(() => this.accSrv.getAccounts().pipe(
@@ -35,12 +34,24 @@ export class EthEffects {
         );
 
 
+    @Effect()
+    GetDefaultAccount$: Observable<Action> = this.actions$.pipe(
+      ofType(fromAction.ActionTypes.GET_DEFAULT_ACCOUNT),
+      switchMap(() => this.accSrv.currentAccount().pipe(
+            map((account: string) => new fromAction.GetDefaultAccountSuccess(account)),
+            catchError(err => of(new fromAction.EthError(err)))
+          )),
 
-  @Effect({dispatch: false})
+        );
 
-    SelectAccount$ = this.actions$.pipe(
-      ofType(fromAction.ActionTypes.SELECT_ACCOUNT),
-      map((action: fromAction.SelectAccount) => this.accSrv.defaultAccount = action.payload)
+
+
+
+  @Effect()
+    SelectDefaultAccount$ = this.actions$.pipe(
+      ofType(fromAction.ActionTypes.SELECT_DEFAULT_ACCOUNT),
+      tap((action: fromAction.SelectDefaultAccount) => this.accSrv.defaultAccount = action.payload),
+      map(() => new fromAction.GetDefaultAccount())
         );
 
 

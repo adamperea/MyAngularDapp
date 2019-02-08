@@ -54,6 +54,15 @@ export class AccountsService {
         }
     }
 
+/*
+
+public currentAccount(): Observable<string> {
+
+      return of(this.web3.eth.defaultAccount);
+
+}
+*/
+
 
 
 }

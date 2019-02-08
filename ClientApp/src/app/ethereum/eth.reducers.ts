@@ -26,7 +26,7 @@ export const reducer = (state = initialState, action: ethActions.EthActionsUnion
       case (ethActions.ActionTypes.GET_ACCOUNTS_SUCCESS): {
             return {...state, accounts: action.payload };
         }
-        case (ethActions.ActionTypes.SELECT_ACCOUNT): {
+        case (ethActions.ActionTypes.GET_DEFAULT_ACCOUNT_SUCCESS): {
             return {...state, selected: action.payload };
         }
         case (ethActions.ActionTypes.ETH_ERROR): {
@@ -60,6 +60,6 @@ export const selectEthState = createFeatureSelector<AppState, EthState>('ethStat
 export const getEthState = createSelector(selectEthState, (state: EthState) => state.eth);
 
 export const getConStatus = createSelector(getEthState, (state: State) => state.conStatus);
-export const getAccounts = createSelector(getEthState, (state: State) => state.accounts);
+export const getAllAccounts = createSelector(getEthState, (state: State) => state.accounts);
 export const getDefaultAccount = createSelector(getEthState, (state: State) => state.selected);
 

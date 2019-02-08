@@ -17,7 +17,8 @@ export class HomeComponent implements OnInit {
 
   title = 'Super Angular with Smart Contract';
 
-  public addresses$: Observable<string[]>;
+  public accounts$: Observable<string[]>;
+  public defaultAcc$: Observable<string>;
 
   constructor(private store: Store<fromEth.AppState>) {}
 
@@ -26,7 +27,10 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     this.store.dispatch( new fromEth.GetAccounts() );
-    this.addresses$ = this.store.pipe(select(fromEth.getAccounts));
+    this.store.dispatch( new fromEth.GetDefaultAccount() );
+
+    this.accounts$ = this.store.pipe(select(fromEth.getAllAccounts));
+    this.defaultAcc$ = this.store.pipe(select(fromEth.getDefaultAccount));
 
   }
 

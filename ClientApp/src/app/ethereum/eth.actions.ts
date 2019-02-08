@@ -11,9 +11,11 @@ The new way to connect to the MetaMask.
 */
   INIT_ETH = '[Eth] Init Ethereum',
   INIT_ETH_SUCCESS = '[Eth] Init Ethereum Success',
-  GET_ACCOUNTS = '[Eth] Get Accounts',
-  GET_ACCOUNTS_SUCCESS = '[Eth] Get Accounts Success',
-  SELECT_ACCOUNT = '[Eth] Select Account',
+  GET_ACCOUNTS = '[Eth] Get All Accounts',
+  GET_ACCOUNTS_SUCCESS = '[Eth] Get All Accounts Success',
+  SELECT_DEFAULT_ACCOUNT = '[Eth] Select Default Account',
+  GET_DEFAULT_ACCOUNT = '[Eth] Get Default Account',
+  GET_DEFAULT_ACCOUNT_SUCCESS = '[Eth] Get Default Account Success',
   ETH_ERROR = '[Eth] Error',
 
 }
@@ -40,9 +42,18 @@ export class GetAccountsSuccess implements Action {
     constructor(public payload: string[]) {}
 }
 
-export class SelectAccount implements Action {
-    readonly type = ActionTypes.SELECT_ACCOUNT;
+export class SelectDefaultAccount implements Action {
+    readonly type = ActionTypes.SELECT_DEFAULT_ACCOUNT;
     constructor(public payload: string) {}
+}
+
+export class GetDefaultAccount implements Action {
+  readonly type = ActionTypes.GET_DEFAULT_ACCOUNT;
+}
+
+export class GetDefaultAccountSuccess implements Action {
+  readonly type = ActionTypes.GET_DEFAULT_ACCOUNT_SUCCESS;
+  constructor(public payload: string) {}
 }
 
 export class EthError implements Action {
@@ -55,5 +66,7 @@ export type EthActionsUnion =
     | InitEthSuccess
     | GetAccounts
     | GetAccountsSuccess
-    | SelectAccount
+    | SelectDefaultAccount
+    | GetDefaultAccount
+    | GetDefaultAccountSuccess
     | EthError;
