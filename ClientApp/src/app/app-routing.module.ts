@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { EthInitGuard } from '../app/ethereum/guards/eth-init.guard';
 
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {

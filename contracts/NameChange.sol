@@ -9,13 +9,19 @@ contract NameChange {
     constructor(string memory initialName) public {
         name = initialName;
     }
+
+    // event
+    event nameChangedEvent (
+        string _name
+    );
 	
     function showName() public view returns(string memory) {
         return name;
     }	
 	
-    function changeName(string memory newName) public { 
-        name = newName;
+    function changeName(string memory _name) public { 
+        name = _name;
+        emit nameChangedEvent(_name);
     }
 
    

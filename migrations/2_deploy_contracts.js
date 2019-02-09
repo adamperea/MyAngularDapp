@@ -1,6 +1,8 @@
 
 var NameChange = artifacts.require("./NameChange.sol");
 
+
 module.exports = function(deployer) {
-  deployer.deploy(NameChange, 'Moby Dick');
+  //this is how we are passing the parameter to the constructor on deploy
+  deployer.deploy(NameChange, 'Mr. Butter');
 };

@@ -2,27 +2,23 @@ import { Component, OnInit, Inject  } from '@angular/core';
 
 // NGRX
 import { Store, select } from '@ngrx/store';
-import * as fromEth from '../ethereum';
+import * as fromEth from '../../ethereum';
 
 // RXJS
 import { Observable } from 'rxjs';
 
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-eth-account',
+  templateUrl: './eth-account.component.html',
+  styleUrls: ['./eth-account.component.css']
 })
-export class HomeComponent implements OnInit {
-
-  title = 'Super Angular with Smart Contract';
+export class EthAccountComponent implements OnInit {
 
   public accounts$: Observable<string[]>;
   public defaultAcc$: Observable<string>;
 
   constructor(private store: Store<fromEth.AppState>) {}
-
-
 
   ngOnInit() {
 

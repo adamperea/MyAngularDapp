@@ -18,11 +18,14 @@ import { environment } from '../environments/environment'; // Angular CLI enviro
 import { AppComponent } from './app.component';
 import { EthModule } from './ethereum';
 
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components/home/home.component';
+import { EthAccountComponent } from './components/eth-account/eth-account.component';
 
 @NgModule({
   declarations: [
-    AppComponent, HomeComponent
+    AppComponent,
+    HomeComponent,
+    EthAccountComponent
   ],
   imports: [
     BrowserModule,
