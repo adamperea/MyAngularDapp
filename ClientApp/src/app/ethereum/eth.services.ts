@@ -17,6 +17,9 @@ export class AccountsService {
      }
 
      /*
+     Notice  that you have to set the default account
+    It is not populated automatically (see test method below)
+
      based on https://github.com/ethereum/wiki/wiki/JavaScript-API#web3ethdefaultaccount
      The default address is used for the following method, for example :
 
@@ -32,6 +35,19 @@ export class AccountsService {
         web3.eth.getAccounts(callback(error, result){ ... })
      *
     */
+   /* here is also note about why we will get only one account in the list. See the discussion bellow:
+based on https://stackoverflow.com/questions/52976890/get-all-ethereum-accounts-from-metamask
+Q: According to web3.js documentation, web3.eth.getAccounts()
+ should return all accounts that this node controls.
+ However, I am getting an array with just the currently selected one.
+ Needless to say, I have multiple accounts created in Metamask.
+
+ A:
+   based on https://github.com/MetaMask/faq/blob/master/DEVELOPERS.md#raising_hand-account-list-reflects-user-preference
+   When a user selects an account in MetaMask, that account silently becomes
+   the web3.eth.accounts[0] in your JS context, the only member of the web3.eth.accounts array.
+
+   */
     public getAccounts(): Observable<any> {
        // !!! here we are using the from operator to convert Promise to Observable
         // see https://www.learnrxjs.io/operators/creation/from.html
@@ -55,7 +71,8 @@ export class AccountsService {
     }
 
 /*
-
+Here i use this test function to show that you have to set the default account
+It is not populated automatically
 public currentAccount(): Observable<string> {
 
       return of(this.web3.eth.defaultAccount);
