@@ -13,7 +13,7 @@ import Web3 from 'web3';
 import * as fromAction from './name-change.actions';
 
 // RXJS
-import { tap, switchMap, map, catchError } from 'rxjs/operators';
+import { tap, switchMap, exhaustMap, map, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class NameChangeEffects {
@@ -23,28 +23,29 @@ export class NameChangeEffects {
     private ethSrv: NameChangeService
   ) {}
 
-  /*
+
    @Effect()
-    GetAccounts$: Observable<Action> = this.actions$.pipe(
-      ofType(fromAction.ActionTypes.GET_ACCOUNTS),
-      switchMap(() => this.accSrv.getAccounts().pipe(
-            map((accounts: string[]) => new fromAction.GetAccountsSuccess(accounts)),
+    GetAccount$: Observable<Action> = this.actions$.pipe(
+      ofType(fromAction.ActionTypes.GET_NAME),
+      switchMap(() => this.ethSrv.getName().pipe(
+            map((name: string) => new fromAction.GetNameSuccess(name)),
             catchError(err => of(new fromAction.EthError(err)))
           )),
 
-        );
+    );
 
 
     @Effect()
-    GetDefaultAccount$: Observable<Action> = this.actions$.pipe(
-      ofType(fromAction.ActionTypes.GET_DEFAULT_ACCOUNT),
-      switchMap(() => this.accSrv.currentAccount().pipe(
-            map((account: string) => new fromAction.GetDefaultAccountSuccess(account)),
+    SetName$: Observable<Action> = this.actions$.pipe(
+      ofType(fromAction.ActionTypes.SET_NAME),
+      map((action: fromAction.SetName) => action.payload),
+      exhaustMap((payload: string) => this.ethSrv.setName(payload).pipe(
+            map((name: string) => new fromAction.SetNameSuccess(name)),
             catchError(err => of(new fromAction.EthError(err)))
           )),
 
         );
 
-*/
+
 
 }

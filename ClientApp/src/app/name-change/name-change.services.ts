@@ -17,7 +17,7 @@ export class NameChangeService {
      }
 
 
-    public getName(): Observable<string> {
+    public getName(): Observable<string | Error> {
        // !!! here we are using the from operator to convert Promise to Observable
         // see https://www.learnrxjs.io/operators/creation/from.html
         return from<string>(this.web3.eth.showName());
@@ -30,7 +30,7 @@ export class NameChangeService {
                 tap((response: any) => console.log('Got response from ChangeName event', response)),
                // !!! see what i am getting and extract just name from the response
                 // map((response: any) => response.arg.log.name),
-
+                map(_ => of('Hopi')),
                 catchError((err: Error) => of(err))
             );
         }
