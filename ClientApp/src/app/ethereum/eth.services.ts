@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 // Web3
-import { WEB3 } from './tokens';
+import { WEB3 } from '../services/tokens';
 import Web3 from 'web3';
 
 // RXJS

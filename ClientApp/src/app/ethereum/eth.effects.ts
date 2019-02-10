@@ -7,7 +7,7 @@ import { Action } from '@ngrx/store';
 import { Observable, of, from } from 'rxjs';
 
 // Web3
-import { WEB3 } from './tokens';
+import { WEB3 } from '../services/tokens';
 import Web3 from 'web3';
 
 import * as fromAction from './eth.actions';

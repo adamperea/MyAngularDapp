@@ -17,6 +17,7 @@ import { environment } from '../environments/environment'; // Angular CLI enviro
 
 import { AppComponent } from './app.component';
 import { EthModule } from './ethereum';
+import { NameChangeModule } from './name-change';
 
 import { HomeComponent } from './components/home/home.component';
 import { EthAccountComponent } from './components/eth-account/eth-account.component';
@@ -35,6 +36,7 @@ import { EthAccountComponent } from './components/eth-account/eth-account.compon
     FlexLayoutModule,
 
     EthModule,
+    NameChangeModule,
 
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([]),
