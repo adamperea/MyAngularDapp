@@ -7,8 +7,9 @@ import { Action } from '@ngrx/store';
 import { Observable, of, from } from 'rxjs';
 
 // Web3
-import { WEB3 } from '../services/tokens';
+import { WEB3, SmartContract } from '../services/tokens';
 import Web3 from 'web3';
+import {TruffleContract} from 'truffle-contract';
 
 import * as fromAction from './eth.actions';
 
@@ -20,6 +21,7 @@ export class EthEffects {
   constructor(
     private actions$: Actions<fromAction.EthActionsUnion>,
     @Inject(WEB3) private web3: Web3,
+    @Inject(SmartContract) private smartContract: TruffleContract,
     private accSrv: AccountsService
   ) {}
 
@@ -88,6 +90,8 @@ This code use the new way to connect to the MetaMask.
           tap(ethAccounts =>
             console.log('User approve access to web3. User accounts are:', ethAccounts)
           ),
+          // !!!fantastic moment here is how we set the contract
+          tap(_ => this.smartContract.setProvider(this.web3.currentProvider) ),
           map((ethAccounts: string[]) => new fromAction.InitEthSuccess()),
           // user reject access to web3 account
           catchError((err: any) => of(new fromAction.EthError(err)))

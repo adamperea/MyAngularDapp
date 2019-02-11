@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MaterialModule, FlexLayoutModule } from '../shared';
 
 //NGRX
 import { StoreModule } from '@ngrx/store';
@@ -10,10 +11,15 @@ import { EthEffects } from './eth.effects';
 // Services
 import { AccountsService } from './eth.services';
 
+import { EthAccountComponent } from '../components/eth-account/eth-account.component';
+
 @NgModule({
-  declarations: [],
+  declarations: [EthAccountComponent],
+  exports: [EthAccountComponent],   // we use it from home.component which is defined in app.module
   imports: [
     CommonModule,
+    MaterialModule,
+    FlexLayoutModule,
 
     StoreModule.forFeature('ethState', reducers),
     EffectsModule.forFeature([EthEffects])

@@ -1,7 +1,9 @@
 import { InjectionToken } from '@angular/core';
 import Web3 from 'web3';
+import TruffleContract from 'truffle-contract';
 
-export const WEB3 = new InjectionToken<Web3>('web3', {
+
+export const WEB3 = new InjectionToken<Web3>('web3Token', {
   providedIn: 'root',
   factory: () => {
     // based on https://medium.com/metamask/https-medium-com-metamask-breaking-change-injecting-web3-7722797916a8
@@ -13,3 +15,12 @@ export const WEB3 = new InjectionToken<Web3>('web3', {
     }
   }
 });
+
+export const SmartContract = new InjectionToken<TruffleContract>('smartContract', {
+  providedIn: 'root',
+  factory: () => {
+    const tokenAbi = require('../../../../build/contracts/NameChange.json');
+    return TruffleContract(tokenAbi);
+  }
+});
+

@@ -33,6 +33,7 @@
     "hammerjs": "^2.0.8",
     "ngrx-store-freeze": "^0.2.4",
     "rxjs": "^6.4.0",
+    "truffle-contract": "^4.0.4",
     "web3": "1.0.0-beta.37",
     "zone.js": "^0.8.28"
   },
@@ -43,7 +44,7 @@
     "@angular/cli": "^7.0.1",
     "@angular/compiler-cli": "^7.0.1",
     "@angular/language-service": "^7.0.1",
-    "@types/node": "^10.12.18",
+    "@types/node": "^10.12.24",
     "codelyzer": "^4.5.0",
     "rimraf": "^2.6.3",
     "ts-node": "~8.0.0",

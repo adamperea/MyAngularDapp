@@ -16,17 +16,16 @@ import { environment } from '../environments/environment'; // Angular CLI enviro
 
 
 import { AppComponent } from './app.component';
-import { EthModule } from './ethereum';
-import { NameChangeModule } from './name-change';
+import { EthModule } from './ethereum/eth.module';
+import { NameChangeModule } from './name-change/name-change.module';
 
 import { HomeComponent } from './components/home/home.component';
-import { EthAccountComponent } from './components/eth-account/eth-account.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    EthAccountComponent
   ],
   imports: [
     BrowserModule,
