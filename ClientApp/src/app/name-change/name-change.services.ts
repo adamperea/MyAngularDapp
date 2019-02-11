@@ -22,15 +22,12 @@ export class NameChangeService {
         // see https://www.learnrxjs.io/operators/creation/from.html
         // !!phenomenal
         return from(this.smartContract.deployed()).pipe(
-            switchMap((instance: any) => from(instance.showName()).pipe(
-            map((name: string) => name),
-            catchError((err: Error) => of(err))
-          )
+            switchMap((instance: any) => from<string>(instance.showName())
         ));
 
     }
 
-
+    // ... pending fix this
     public setName(name: string): Observable<string | Error> {
 
             return this.smartContract.changeName(name).pipe(
