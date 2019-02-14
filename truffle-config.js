@@ -48,13 +48,7 @@ module.exports = {
       network_id: "*",       // Any network (default: none)
      },
       
-     //ganache network
-     ganache: {
-      host: "127.0.0.1",
-      port: 8545,
-      network_id: "*" // matching any id
-    }
-
+  
      //Configuration for the Ganache network
      //the command to deploy to the Ganache will looks like
      //truffle migrate --network ganache
