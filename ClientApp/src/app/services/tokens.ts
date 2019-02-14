@@ -19,7 +19,7 @@ export const WEB3 = new InjectionToken<Web3>('web3Token', {
 export const SmartContract = new InjectionToken<TruffleContract>('smartContract', {
   providedIn: 'root',
   factory: () => {
-    const tokenAbi = require('../../../../build/contracts/NameChange.json');
+    const tokenAbi = require('../../../../build/contracts/PokemonAttack.json');
     return TruffleContract(tokenAbi);
   }
 });

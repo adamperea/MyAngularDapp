@@ -1,5 +1,5 @@
 
-var NameChange = artifacts.require("./NameChange.sol");
+var NameChange = artifacts.require("./PokemonAttack.sol");
 
 
 module.exports = function(deployer) {

@@ -17,7 +17,7 @@ import { environment } from '../environments/environment'; // Angular CLI enviro
 
 import { AppComponent } from './app.component';
 import { EthModule } from './ethereum/eth.module';
-import { NameChangeModule } from './name-change/name-change.module';
+import { AttackChangeModule } from './attack-change/attack-change.module';
 
 import { HomeComponent } from './components/home/home.component';
 
@@ -35,7 +35,7 @@ import { HomeComponent } from './components/home/home.component';
     FlexLayoutModule,
 
     EthModule,
-    NameChangeModule,
+    AttackChangeModule,
 
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([]),
