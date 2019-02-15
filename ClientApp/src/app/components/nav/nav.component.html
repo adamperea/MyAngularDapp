@@ -1,31 +1,32 @@
-
-
 <div fxLayout="row" fxLayoutAlign="center start">
-
   <mat-card fxFlex="45">
-      <mat-card-header>
-          <a mat-card-avatar class="pokemon-header-image" routerLink="/zero"></a>
-          <mat-card-title>Smart Contract with Angular and NgRx</mat-card-title>
-          <mat-card-subtitle>Pokemon {{pokemon}} on Ethereum blockchain</mat-card-subtitle>
-      </mat-card-header>
+    <mat-card-header>
+      <a mat-card-avatar class="pokemon-header-image" routerLink="/zero"></a>
+      <mat-card-title>Smart Contract with Angular and NgRx</mat-card-title>
+      <mat-card-subtitle
+        >Pokemon {{ pokemon }} on Ethereum blockchain</mat-card-subtitle
+      >
+    </mat-card-header>
 
-      <mat-card-actions>
-          <a mat-stroked-button color="accent" routerLink="/accounts" routerLinkActiveOptions="true">Blockchain Accounts</a>
-          <a mat-stroked-button color="warn" routerLink="/attacks" routerLinkActiveOptions="true">Manage Fast Attacks</a>
-      </mat-card-actions>
+    <mat-card-actions>
+      <a
+        mat-stroked-button
+        color="accent"
+        routerLink="/accounts"
+        routerLinkActiveOptions="true"
+        >Blockchain Accounts</a
+      >
+      <a
+        mat-stroked-button
+        color="warn"
+        routerLink="/attacks"
+        routerLinkActiveOptions="true"
+        >Manage Fast Attacks</a
+      >
+    </mat-card-actions>
 
+    <mat-card-content>
       <router-outlet></router-outlet>
-
-
-
-
-      </mat-card>
+    </mat-card-content>
+  </mat-card>
 </div>
-
-
-
-<!--
-<app-eth-account></app-eth-account>
-
-<app-attack-change></app-attack-change>
--->
