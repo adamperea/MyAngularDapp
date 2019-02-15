@@ -3,15 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { EthInitGuard } from '../app/ethereum/guards/eth-init.guard';
 
-import { HomeComponent } from './components/home/home.component';
+import { ZeroComponent } from './components/zero/zero.component';
 
 const routes: Routes = [
   {
-    path: '', redirectTo: '/home', pathMatch: 'full',
+    path: '', redirectTo: '/zero', pathMatch: 'full',
   },
   {
-    path: 'home',
-    component: HomeComponent,
+    path: 'zero',
+    component: ZeroComponent,
     //canActivate: [EthInitGuard],
   },
 ];

@@ -19,13 +19,15 @@ import { AppComponent } from './app.component';
 import { EthModule } from './ethereum/eth.module';
 import { AttackChangeModule } from './attack-change/attack-change.module';
 
-import { HomeComponent } from './components/home/home.component';
+import { NavComponent } from './components/nav/nav.component';
+import {ZeroComponent} from './components/zero/zero.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    NavComponent,
+    ZeroComponent
   ],
   imports: [
     BrowserModule,
