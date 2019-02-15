@@ -8,7 +8,7 @@ import { Component, OnInit, Inject  } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  title = 'Super Angular with Smart Contract';
+  pokemon = 'Groundon';
 
   ngOnInit() {
 
