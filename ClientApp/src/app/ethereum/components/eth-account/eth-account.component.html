@@ -1,21 +1,16 @@
 
- <mat-card >
-  <mat-card-header>
-    <mat-card-title>Ethereum accounts dashboard</mat-card-title>
-  </mat-card-header>
+    <h2 class="mat-h2">Active blockchain accounts</h2>
 
-  <mat-card-content>
+    <mat-list>
+      <h3 mat-subheader> Default account:</h3>
+      <mat-list-item>
+          <h4 class="mat-h4"> {{defaultAcc$ | async}} </h4>
+      </mat-list-item>
 
-    <mat-list dense >
-      <h3 matSubheader> Default account: {{defaultAcc$ | async}}</h3>
-
-      <h3 matSubheader> List of current accounts</h3>
+      <h3 mat-subheader> List of available accounts:</h3>
       <mat-list-item *ngFor="let address of accounts$ | async">
-        <h3 matLine> {{address}} </h3>
+        <h4 class="mat-h4"> {{address}} </h4>
       </mat-list-item>
     </mat-list>
 
-  </mat-card-content>
-
-</mat-card>
 
