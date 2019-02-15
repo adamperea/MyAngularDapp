@@ -16,9 +16,6 @@ import { environment } from '../environments/environment'; // Angular CLI enviro
 
 
 import { AppComponent } from './app.component';
-import { EthModule } from './ethereum/eth.module';
-import { AttackChangeModule } from './attack-change/attack-change.module';
-
 import { NavComponent } from './components/nav/nav.component';
 import {ZeroComponent} from './components/zero/zero.component';
 
@@ -35,9 +32,6 @@ import {ZeroComponent} from './components/zero/zero.component';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-
-    EthModule,
-    AttackChangeModule,
 
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([]),

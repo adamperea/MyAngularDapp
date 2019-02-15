@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule, FlexLayoutModule } from '../shared';
 
 //NGRX
@@ -11,7 +12,16 @@ import { AttackChangeEffects } from './attack-change.effects';
 // Services
 import { AttackChangeService } from './attack-change.services';
 
-import { AttackChangeComponent } from '../components/attack-change/attack-change.component';
+import { AttackChangeComponent } from './components/attack-change/attack-change.component';
+
+const routes: Routes = [
+
+  {
+      path: '',
+      component: AttackChangeComponent,
+  },
+
+];
 
 @NgModule({
   declarations: [AttackChangeComponent],
@@ -20,6 +30,8 @@ import { AttackChangeComponent } from '../components/attack-change/attack-change
     CommonModule,
     MaterialModule,
     FlexLayoutModule ,
+
+    RouterModule.forChild(routes),
 
     StoreModule.forFeature('attackState', reducers),
     EffectsModule.forFeature([AttackChangeEffects])

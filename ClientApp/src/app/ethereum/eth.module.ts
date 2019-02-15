@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule, FlexLayoutModule } from '../shared';
 
 //NGRX
@@ -11,7 +12,18 @@ import { EthEffects } from './eth.effects';
 // Services
 import { AccountsService } from './eth.services';
 
-import { EthAccountComponent } from '../components/eth-account/eth-account.component';
+import { EthAccountComponent } from './components/eth-account/eth-account.component';
+
+
+const routes: Routes = [
+
+  {
+      path: '',
+      component: EthAccountComponent,
+  },
+
+];
+
 
 @NgModule({
   declarations: [EthAccountComponent],
@@ -20,6 +32,8 @@ import { EthAccountComponent } from '../components/eth-account/eth-account.compo
     CommonModule,
     MaterialModule,
     FlexLayoutModule,
+
+    RouterModule.forChild(routes),
 
     StoreModule.forFeature('ethState', reducers),
     EffectsModule.forFeature([EthEffects])

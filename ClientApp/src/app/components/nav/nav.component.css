@@ -3,3 +3,8 @@
   background-image: url('../../../assets/img/groudon.png');
   background-size: cover;
 }
+
+mat-card {
+  min-height: 450px
+}
+

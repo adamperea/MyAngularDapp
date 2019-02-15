@@ -2,7 +2,7 @@ import { Component, OnInit, Inject  } from '@angular/core';
 
 // NGRX
 import { Store, select } from '@ngrx/store';
-import * as fromAttackChange from '../../attack-change';
+import * as fromAttackChange from '../../index';
 
 // RXJS
 import { Observable } from 'rxjs';

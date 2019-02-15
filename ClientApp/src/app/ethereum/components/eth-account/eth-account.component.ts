@@ -2,7 +2,7 @@ import { Component, OnInit, Inject  } from '@angular/core';
 
 // NGRX
 import { Store, select } from '@ngrx/store';
-import * as fromEth from '../../ethereum';
+import * as fromEth from '../../index';
 
 // RXJS
 import { Observable } from 'rxjs';
