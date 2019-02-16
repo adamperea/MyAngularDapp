@@ -48,7 +48,8 @@ export class AttackChangeComponent implements OnInit, OnDestroy {
   onConfirm(): void {
 
     const model = this.frmGroup.value;
-    console.log('model', model);
+    // console.log('model', model);
+    this.store.dispatch(new fromAttackChange.SetAttack(model.attack));
   }
 
 

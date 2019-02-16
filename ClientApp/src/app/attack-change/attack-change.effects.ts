@@ -6,10 +6,6 @@ import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of, from } from 'rxjs';
 
-// Web3
-import { WEB3 } from '../services/tokens';
-import Web3 from 'web3';
-
 import * as fromAction from './attack-change.actions';
 
 // RXJS
@@ -19,7 +15,6 @@ import { tap, switchMap, exhaustMap, map, catchError } from 'rxjs/operators';
 export class AttackChangeEffects {
   constructor(
     private actions$: Actions<fromAction.ChangeAttackActionsUnion>,
-    @Inject(WEB3) private web3: Web3,
     private ethSrv: AttackChangeService
   ) {}
 
@@ -39,8 +34,10 @@ export class AttackChangeEffects {
     SetAttack$: Observable<Action> = this.actions$.pipe(
       ofType(fromAction.ActionTypes.SET_ATTACK),
       map((action: fromAction.SetAttack) => action.payload),
-      exhaustMap((payload: string) => this.ethSrv.setAttack(payload).pipe(
-            map((name: string) => new fromAction.SetAttackSuccess(name)),
+      exhaustMap((name: string) => this.ethSrv.setAttack(name).pipe(
+            tap(response => console.log('response', response)),
+            // map((responce: string) => new fromAction.SetAttackSuccess(name)),
+            map(_ => new fromAction.SetAttackSuccess(name)),
             catchError(err => of(new fromAction.EthError(err)))
           )),
 

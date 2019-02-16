@@ -21,7 +21,7 @@ contract PokemonAttack {
 	
     function changeAttack(string memory _attack) public { 
         attack = _attack;
-        emit attackChangedEvent(_attack);
+        //emit attackChangedEvent(_attack);
     }
 
    
