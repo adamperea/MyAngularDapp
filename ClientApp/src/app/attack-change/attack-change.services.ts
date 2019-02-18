@@ -19,7 +19,7 @@ export class AttackChangeService {
      }
 
 
-    public getAttack(): Observable<string | Error> {
+    public getAttack(): Observable<string> {
        // !!! here we are using the from operator to convert Promise to Observable
         // see https://www.learnrxjs.io/operators/creation/from.html
         // !!phenomenal

@@ -36,7 +36,7 @@ export class AttackChangeEffects {
       map((action: fromAction.SetAttack) => action.payload),
       exhaustMap((name: string) => this.ethSrv.setAttack(name).pipe(
             tap(response => console.log('response', response)),
-            // map((responce: string) => new fromAction.SetAttackSuccess(name)),
+            // map((response: string) => new fromAction.SetAttackSuccess(name)),
             map(_ => new fromAction.SetAttackSuccess(name)),
             catchError(err => of(new fromAction.EthError(err)))
           )),

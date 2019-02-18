@@ -48,10 +48,12 @@ Q: According to web3.js documentation, web3.eth.getAccounts()
    the web3.eth.accounts[0] in your JS context, the only member of the web3.eth.accounts array.
 
    */
-    public getAccounts(): Observable<any> {
+    public getAccounts(): Observable<string[]> {
        // !!! here we are using the from operator to convert Promise to Observable
         // see https://www.learnrxjs.io/operators/creation/from.html
-        return from(this.web3.eth.getAccounts());
+        return from(this.web3.eth.getAccounts()).pipe(
+          map(result => <string[]>result)
+        );
     }
 
     /** Get the current account */
