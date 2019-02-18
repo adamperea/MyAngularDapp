@@ -71,6 +71,18 @@ Q: According to web3.js documentation, web3.eth.getAccounts()
         }
     }
 
+    public getAccountBalance(): Observable<string> {
+
+       return from(this.web3.eth.getBalance(this.defaultAccount)).pipe(
+         tap(wei_balance => console.log('wei balance', wei_balance)),
+         // based on https://web3js.readthedocs.io/en/1.0/web3-utils.html
+         // web3.utils.fromWei always returns a string number.
+         map(wei_balance => this.web3.utils.fromWei(wei_balance, 'ether')),
+         tap(eth_balance => console.log('eth balance', eth_balance)),
+
+       );
+   }
+
 /*
 Here i use this test function to show that you have to set the default account
 It is not populated automatically

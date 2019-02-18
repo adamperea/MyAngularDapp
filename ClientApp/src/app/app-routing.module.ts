@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { EthInitGuard } from '../app/ethereum/guards/eth-init.guard';
+import * as guards from '../app/ethereum/guards';
+
 import { ZeroComponent } from './components/zero/zero.component';
 
 const routes: Routes = [
@@ -15,12 +16,12 @@ const routes: Routes = [
   {
     path: 'accounts',
     loadChildren: './ethereum/eth.module#EthModule',
-    canActivate: [EthInitGuard],
+    canActivate: [guards.EthInitGuard, guards.EthDefaultAccountGuard],
 },
 {
   path: 'attacks',
   loadChildren: './attack-change/attack-change.module#AttackChangeModule',
-  canActivate: [EthInitGuard],
+  canActivate: [guards.EthInitGuard, guards.EthDefaultAccountGuard],
 },
 ];
 

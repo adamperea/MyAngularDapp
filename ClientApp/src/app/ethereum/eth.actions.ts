@@ -16,6 +16,8 @@ The new way to connect to the MetaMask.
   SELECT_DEFAULT_ACCOUNT = '[Eth] Select Default Account',
   GET_DEFAULT_ACCOUNT = '[Eth] Get Default Account',
   GET_DEFAULT_ACCOUNT_SUCCESS = '[Eth] Get Default Account Success',
+  GET_CURRENT_BALANCE = '[Eth] Get Current Account Balance',
+  GET_CURRENT_BALANCE_SUCCESS = '[Eth] Get Current Account Balance Success',
   ETH_ERROR = '[Eth] Error',
 
 }
@@ -56,6 +58,15 @@ export class GetDefaultAccountSuccess implements Action {
   constructor(public payload: string) {}
 }
 
+export class GetAccountBalance implements Action {
+  readonly type = ActionTypes.GET_CURRENT_BALANCE;
+}
+
+export class GetAccountBalanceSuccess implements Action {
+  readonly type = ActionTypes.GET_CURRENT_BALANCE_SUCCESS;
+  constructor(public payload: string) {}
+}
+
 export class EthError implements Action {
     readonly type = ActionTypes.ETH_ERROR;
     constructor(public payload: any) {}
@@ -69,4 +80,6 @@ export type EthActionsUnion =
     | SelectDefaultAccount
     | GetDefaultAccount
     | GetDefaultAccountSuccess
+    | GetAccountBalance
+    | GetAccountBalanceSuccess
     | EthError;

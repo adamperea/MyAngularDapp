@@ -17,17 +17,20 @@ export class EthAccountComponent implements OnInit {
 
   public accounts$: Observable<string[]>;
   public defaultAcc$: Observable<string>;
+  public balance$: Observable<string>;
 
   constructor(private store: Store<fromEth.AppState>) {}
 
   ngOnInit() {
 
-    this.store.dispatch( new fromEth.GetDefaultAccount() );
-    this.store.dispatch( new fromEth.GetAccounts() );
+
+    [ new fromEth.GetDefaultAccount(),  new fromEth.GetAccounts(), new fromEth.GetAccountBalance()]
+    .forEach(a => this.store.dispatch(a) );
 
 
     this.accounts$ = this.store.pipe(select(fromEth.getAllAccounts));
     this.defaultAcc$ = this.store.pipe(select(fromEth.getDefaultAccount));
+    this.balance$ = this.store.pipe(select(fromEth.getAccountBalance));
 
   }
 

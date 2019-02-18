@@ -26,5 +26,18 @@ contract PokemonAttack {
         return true;
     }
 
+    //function balanceOf() public view returns(uint){
+       
+       /*Important node.
+       'this' in Solidity represents a instance of the smart contract which we deployed
+       Prior to version 0.5.0, Solidity allowed address members to be accessed by a contract instance, 
+       for example this.balance.
+       This is now forbidden and an explicit conversion to address must be done: address(this).balance.
+       */
+        //return address(this).balance;
+    //}
+
+    
+
    
 }

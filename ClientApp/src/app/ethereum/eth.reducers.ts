@@ -5,14 +5,16 @@ import * as root from '../reducers';
 
 // based on https://ngrx.io/guide/store/selectors
 export interface State {
-    conStatus: boolean;
-    selected: string;
+    connectionStatus: boolean;
+    defaultAccount: string;
+    balance: string;
     accounts: string[];
 }
 
 const initialState: State  = {
-  conStatus: false,
-  selected: null,
+  connectionStatus: false,
+  defaultAccount: null,
+  balance: null,
   accounts: []
 };
 
@@ -21,16 +23,19 @@ export const reducer = (state = initialState, action: ethActions.EthActionsUnion
     switch (action.type) {
 
       case (ethActions.ActionTypes.INIT_ETH_SUCCESS): {
-        return {...state, conStatus: true};
+        return {...state, connectionStatus: true};
       }
       case (ethActions.ActionTypes.GET_ACCOUNTS_SUCCESS): {
             return {...state, accounts: action.payload };
         }
         case (ethActions.ActionTypes.GET_DEFAULT_ACCOUNT_SUCCESS): {
-            return {...state, selected: action.payload };
+            return {...state, defaultAccount: action.payload };
         }
+        case (ethActions.ActionTypes.GET_CURRENT_BALANCE_SUCCESS): {
+          return {...state, balance: action.payload };
+      }
         case (ethActions.ActionTypes.ETH_ERROR): {
-            console.error('User denied account access. Error is:', action.payload);
+            console.error('Got error:', action.payload);
             return state;
         }
         default: {
@@ -59,7 +64,7 @@ export const reducers: ActionReducerMap<EthState> = {
 export const selectEthState = createFeatureSelector<AppState, EthState>('ethState');
 export const getEthState = createSelector(selectEthState, (state: EthState) => state.eth);
 
-export const getConStatus = createSelector(getEthState, (state: State) => state.conStatus);
+export const getConStatus = createSelector(getEthState, (state: State) => state.connectionStatus);
 export const getAllAccounts = createSelector(getEthState, (state: State) => state.accounts);
-export const getDefaultAccount = createSelector(getEthState, (state: State) => state.selected);
-
+export const getDefaultAccount = createSelector(getEthState, (state: State) => state.defaultAccount);
+export const getAccountBalance = createSelector(getEthState, (state: State) => state.balance);
