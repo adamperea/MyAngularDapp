@@ -67,7 +67,6 @@ Q: According to web3.js documentation, web3.eth.getAccounts()
                 }),
                 map((accounts: string[]) => accounts[0]),
                 tap((account: string) => this.defaultAccount = account),
-                catchError((err: Error) => of(err))
             );
         }
     }

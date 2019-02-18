@@ -35,9 +35,10 @@ export class AttackChangeEffects {
       ofType(fromAction.ActionTypes.SET_ATTACK),
       map((action: fromAction.SetAttack) => action.payload),
       exhaustMap((name: string) => this.ethSrv.setAttack(name).pipe(
-            tap(response => console.log('response', response)),
-            // map((response: string) => new fromAction.SetAttackSuccess(name)),
-            map(_ => new fromAction.SetAttackSuccess(name)),
+            tap(result => console.log('result', result)),
+            // retrieve the log information that will contain the event data.
+            map(result => result.logs[0].args[0]),
+            map((newName: string) => new fromAction.SetAttackSuccess(newName)),
             catchError(err => of(new fromAction.EthError(err)))
           )),
 

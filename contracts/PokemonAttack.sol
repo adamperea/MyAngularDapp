@@ -19,9 +19,11 @@ contract PokemonAttack {
         return attack;
     }	
 	
-    function changeAttack(string memory _attack) public { 
+    function changeAttack(string memory _attack) public returns (bool){ 
         attack = _attack;
-        //emit attackChangedEvent(_attack);
+        emit attackChangedEvent(_attack);
+
+        return true;
     }
 
    
