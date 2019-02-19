@@ -9,17 +9,15 @@
     </mat-card-header>
 
     <mat-card-actions>
-      <a
-        mat-stroked-button
-        color="accent"
-        routerLink="/accounts"
-        routerLinkActiveOptions="true"
+      <a mat-stroked-button  routerLink="/accounts"
+         routerLinkActive="active-link"
+         routerLinkActiveOptions="{ exact: true }"
+         routerLinkActiveOptions="true"
         >Blockchain Accounts</a
       >
-      <a
-        mat-stroked-button
-        color="warn"
-        routerLink="/attacks"
+      <a mat-stroked-button  routerLink="/attacks"
+        routerLinkActive="active-link"
+        routerLinkActiveOptions="{ exact: true }"
         routerLinkActiveOptions="true"
         >Manage Fast Attacks</a
       >

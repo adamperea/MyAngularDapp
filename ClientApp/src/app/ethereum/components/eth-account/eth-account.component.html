@@ -1,16 +1,34 @@
 
-    <h2 class="mat-h2">Active blockchain accounts</h2>
+    <!-- <h2 class="mat-h2">Blockchain accounts</h2> -->
 
     <mat-list>
-      <h3 mat-subheader> Default account:</h3>
+      <h3 mat-subheader> Default account info:</h3>
       <mat-list-item>
-          <h4 class="mat-h4"> {{defaultAcc$ | async}} </h4>
+
+        <div matLine fxLayout="row" fxLayoutAlign="start center">
+          <span fxFlex='20'>Address:</span>
+          <span fxFlex>
+            <mat-chip>{{defaultAcc$ | async}}</mat-chip>
+          </span>
+
+        </div>
+        <div matLine matLine fxLayout="row" fxLayoutAlign="start center">
+           <span fxFlex='20'>Balance:</span>
+           <span fxFex>
+              <mat-chip color="primary" selected> {{balance$ | async}}</mat-chip>
+           </span>
+
+        </div>
+
       </mat-list-item>
+
+      <mat-divider></mat-divider>
 
       <h3 mat-subheader> List of available accounts:</h3>
       <mat-list-item *ngFor="let address of accounts$ | async">
         <h4 class="mat-h4"> {{address}} </h4>
       </mat-list-item>
+
     </mat-list>
 
 

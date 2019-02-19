@@ -26,6 +26,7 @@ contract PokemonAttack {
         return true;
     }
 
+    //no need we use web3 to retrive this info
     //function balanceOf() public view returns(uint){
        
        /*Important node.
