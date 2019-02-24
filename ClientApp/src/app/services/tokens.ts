@@ -1,6 +1,8 @@
-import { InjectionToken } from '@angular/core';
+import { InjectionToken} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import Web3 from 'web3';
 import TruffleContract from 'truffle-contract';
+import ContractAbi from '../../../../build/contracts/PokemonAttack.json';
 
 
 export const WEB3 = new InjectionToken<Web3>('web3Token', {
@@ -16,11 +18,12 @@ export const WEB3 = new InjectionToken<Web3>('web3Token', {
   }
 });
 
+
 export const SmartContract = new InjectionToken<TruffleContract>('smartContract', {
   providedIn: 'root',
-  factory: () => {
-    const tokenAbi = require('../../../../build/contracts/PokemonAttack.json');
-    return TruffleContract(tokenAbi);
-  }
+  factory: () =>  TruffleContract(ContractAbi),
+
 });
+
+
 

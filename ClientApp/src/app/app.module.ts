@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule, FlexLayoutModule } from './shared';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { HttpClientModule } from '@angular/common/http';
+
 //NgRx
 import { reducers, metaReducers } from './reducers';
 import { StoreModule } from '@ngrx/store';
@@ -30,6 +32,7 @@ import {ZeroComponent} from './components/zero/zero.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MaterialModule,
     FlexLayoutModule,
 
