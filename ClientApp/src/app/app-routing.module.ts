@@ -16,12 +16,12 @@ const routes: Routes = [
   {
     path: 'accounts',
     loadChildren: './ethereum/eth.module#EthModule',
-    canActivate: [guards.EthInitGuard, guards.EthDefaultAccountGuard],
+    canActivate: [guards.EthInitGuard],
 },
 {
   path: 'attacks',
   loadChildren: './attack-change/attack-change.module#AttackChangeModule',
-  canActivate: [guards.EthInitGuard, guards.EthDefaultAccountGuard],
+  canActivate: [guards.EthInitGuard],
 },
 ];
 

@@ -56,20 +56,6 @@ Q: According to web3.js documentation, web3.eth.getAccounts()
         );
     }
 
-    /** Get the current account */
-    public currentAccount(): Observable<string | Error> {
-        if (this.web3.eth.defaultAccount) {
-            return of(this.web3.eth.defaultAccount);
-        } else {
-            return this.getAccounts().pipe(
-                tap((accounts: string[]) => {
-                    if (accounts.length === 0) { throw new Error('No accounts available'); }
-                }),
-                map((accounts: string[]) => accounts[0]),
-                tap((account: string) => this.defaultAccount = account),
-            );
-        }
-    }
 
     public getAccountBalance(): Observable<string> {
 

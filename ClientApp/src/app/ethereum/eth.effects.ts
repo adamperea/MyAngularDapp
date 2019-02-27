@@ -1,20 +1,19 @@
-import { Injectable, Inject } from '@angular/core';
-import { AccountsService } from './eth.services';
 
-// NGRX
+import { Injectable, Inject } from '@angular/core';
+
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of, from } from 'rxjs';
+import {exhaustMap, switchMap, map, tap, catchError } from 'rxjs/operators';
 
-// Web3
 import { WEB3, SmartContract } from '../services/tokens';
 import Web3 from 'web3';
 import {TruffleContract} from 'truffle-contract';
 
+import { AccountsService } from './eth.services';
 import * as fromAction from './eth.actions';
 
-// RXJS
-import { tap, switchMap, map, catchError } from 'rxjs/operators';
+
 
 @Injectable()
 export class EthEffects {
@@ -51,23 +50,45 @@ This code use the new way to connect to the MetaMask.
       @Effect()
       InitEther$ = this.actions$.pipe(
         ofType(fromAction.ActionTypes.INIT_ETH),
-        switchMap((action: fromAction.InitEth) => {
+        exhaustMap((action: fromAction.InitEth) => {
           if ('enable' in this.web3.currentProvider) {
+
             // !!! here we are using the from operator to convert Promise to Observable
             // see https://www.learnrxjs.io/operators/creation/from.html
             return from(this.web3.currentProvider.enable()).pipe(
-              tap(ethAccounts =>
+              tap((ethAccounts: string[]) =>
                 console.log('User approve access to web3. User accounts are:', ethAccounts)
               ),
-              // !!!fantastic moment here is how we set the contract
-              tap(_ => this.smartContract.setProvider(this.web3.currentProvider) ),
-              map((ethAccounts: string[]) => new fromAction.InitEthSuccess()),
+
+
+              switchMap((ethAccounts: string[]) => {
+
+                if (ethAccounts.length === 0) {
+                  return [new fromAction.EthError(new Error('No accounts available'))];
+
+                }
+
+                // set default account
+                this.accSrv.defaultAccount = ethAccounts[0];
+
+                // set the provider for the smart contract
+                this.smartContract.setProvider(this.web3.currentProvider);
+
+                // dispatch action that everything is ready
+                return  [
+                    new fromAction.InitEthSuccess(),
+                    new fromAction.SetDefaultAccountSuccess(ethAccounts[0])
+                  ];
+
+              }),
+
               // user reject access to web3 account
               catchError((err: any) => of(new fromAction.EthError(err)))
             );
           }
         })
       );
+
 
 
 
@@ -82,26 +103,16 @@ This code use the new way to connect to the MetaMask.
         );
 
 
-    @Effect()
-    GetDefaultAccount$: Observable<Action> = this.actions$.pipe(
-      ofType(fromAction.ActionTypes.GET_DEFAULT_ACCOUNT),
-      switchMap(() => this.accSrv.currentAccount().pipe(
-            map((account: string) => new fromAction.GetDefaultAccountSuccess(account)),
-            catchError(err => of(new fromAction.EthError(err)))
-          )),
-
-        );
-
-
-
-
   @Effect()
-    SelectDefaultAccount$ = this.actions$.pipe(
-      ofType(fromAction.ActionTypes.SELECT_DEFAULT_ACCOUNT),
-      tap((action: fromAction.SelectDefaultAccount) => this.accSrv.defaultAccount = action.payload),
-      map(() => new fromAction.GetDefaultAccount())
-        );
+    SetDefaultAccount$ = this.actions$.pipe(
+      ofType(fromAction.ActionTypes.SET_DEFAULT_ACCOUNT),
+      map((action: fromAction.SetDefaultAccount) => {
 
+         this.accSrv.defaultAccount = action.payload;
+
+         return new fromAction.SetDefaultAccountSuccess(action.payload);
+      })
+   );
 
 
 

@@ -28,7 +28,7 @@ export const reducer = (state = initialState, action: ethActions.EthActionsUnion
       case (ethActions.ActionTypes.GET_ACCOUNTS_SUCCESS): {
             return {...state, accounts: action.payload };
         }
-        case (ethActions.ActionTypes.GET_DEFAULT_ACCOUNT_SUCCESS): {
+        case (ethActions.ActionTypes.SET_DEFAULT_ACCOUNT_SUCCESS): {
             return {...state, defaultAccount: action.payload };
         }
         case (ethActions.ActionTypes.GET_CURRENT_BALANCE_SUCCESS): {

@@ -13,9 +13,8 @@ The new way to connect to the MetaMask.
   INIT_ETH_SUCCESS = '[Eth] Init Ethereum Success',
   GET_ACCOUNTS = '[Eth] Get All Accounts',
   GET_ACCOUNTS_SUCCESS = '[Eth] Get All Accounts Success',
-  SELECT_DEFAULT_ACCOUNT = '[Eth] Select Default Account',
-  GET_DEFAULT_ACCOUNT = '[Eth] Get Default Account',
-  GET_DEFAULT_ACCOUNT_SUCCESS = '[Eth] Get Default Account Success',
+  SET_DEFAULT_ACCOUNT = '[Eth] Set Default Account',
+  SET_DEFAULT_ACCOUNT_SUCCESS = '[Eth] Set Default Account Success',
   GET_CURRENT_BALANCE = '[Eth] Get Current Account Balance',
   GET_CURRENT_BALANCE_SUCCESS = '[Eth] Get Current Account Balance Success',
   ETH_ERROR = '[Eth] Error',
@@ -44,17 +43,14 @@ export class GetAccountsSuccess implements Action {
     constructor(public payload: string[]) {}
 }
 
-export class SelectDefaultAccount implements Action {
-    readonly type = ActionTypes.SELECT_DEFAULT_ACCOUNT;
+export class SetDefaultAccount implements Action {
+    readonly type = ActionTypes.SET_DEFAULT_ACCOUNT;
     constructor(public payload: string) {}
 }
 
-export class GetDefaultAccount implements Action {
-  readonly type = ActionTypes.GET_DEFAULT_ACCOUNT;
-}
 
-export class GetDefaultAccountSuccess implements Action {
-  readonly type = ActionTypes.GET_DEFAULT_ACCOUNT_SUCCESS;
+export class SetDefaultAccountSuccess implements Action {
+  readonly type = ActionTypes.SET_DEFAULT_ACCOUNT_SUCCESS;
   constructor(public payload: string) {}
 }
 
@@ -77,9 +73,8 @@ export type EthActionsUnion =
     | InitEthSuccess
     | GetAccounts
     | GetAccountsSuccess
-    | SelectDefaultAccount
-    | GetDefaultAccount
-    | GetDefaultAccountSuccess
+    | SetDefaultAccount
+    | SetDefaultAccountSuccess
     | GetAccountBalance
     | GetAccountBalanceSuccess
     | EthError;

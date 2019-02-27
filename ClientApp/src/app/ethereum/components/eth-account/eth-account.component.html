@@ -8,14 +8,14 @@
         <div matLine fxLayout="row" fxLayoutAlign="start center">
           <span fxFlex='20'>Address:</span>
           <span fxFlex>
-            <mat-chip>{{defaultAcc$ | async}}</mat-chip>
+            <mat-chip color="primary" selected>{{defaultAcc$ | async}}</mat-chip>
           </span>
 
         </div>
         <div matLine matLine fxLayout="row" fxLayoutAlign="start center">
            <span fxFlex='20'>Balance:</span>
            <span fxFex>
-              <mat-chip color="primary" selected> {{balance$ | async}}</mat-chip>
+              <mat-chip color="warn" selected> {{balance$ | async}}</mat-chip>
            </span>
 
         </div>

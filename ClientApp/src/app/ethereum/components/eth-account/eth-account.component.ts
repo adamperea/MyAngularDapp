@@ -24,7 +24,7 @@ export class EthAccountComponent implements OnInit {
   ngOnInit() {
 
 
-    [ new fromEth.GetDefaultAccount(),  new fromEth.GetAccounts(), new fromEth.GetAccountBalance()]
+    [ new fromEth.GetAccounts(), new fromEth.GetAccountBalance()]
     .forEach(a => this.store.dispatch(a) );
 
 
