@@ -55,12 +55,14 @@ This code use the new way to connect to the MetaMask.
           if ('enable' in this.web3.currentProvider) {
 
             /*
-            baed on https://medium.com/metamask/https-medium-com-metamask-breaking-change-injecting-web3-7722797916a8
+            based on https://medium.com/metamask/https-medium-com-metamask-breaking-change-injecting-web3-7722797916a8
             This method returns a Promise that’s either resolved with user accounts after user approval,
              or rejected with an Error after user rejection.
             */
             // !!! here we are using the from operator to convert Promise to Observable
             // see https://www.learnrxjs.io/operators/creation/from.html
+            // basically at this place MetaMask will popup the message asking permission to access
+            // the user accounts.
             return from(this.web3.currentProvider.enable()).pipe(
               tap((ethAccounts: string[]) =>
                 console.log('User granted access Ethereum provider to user accounts', ethAccounts)

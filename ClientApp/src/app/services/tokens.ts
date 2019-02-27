@@ -11,6 +11,7 @@ export const WEB3 = new InjectionToken<Web3>('web3Token', {
     // based on https://medium.com/metamask/https-medium-com-metamask-breaking-change-injecting-web3-7722797916a8
     try {
       const provider = ('ethereum' in window) ? window['ethereum'] : Web3.givenProvider;
+
       return new Web3(provider);
     } catch (err) {
       throw new Error('Unable to retrieve the injected Ethereum provider from  MetaMask');
