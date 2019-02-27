@@ -23,15 +23,12 @@ export class EthAccountComponent implements OnInit {
 
   ngOnInit() {
 
+    // dispatch action to get default account balance
+    [new fromEth.GetAccountBalance()].forEach(a => this.store.dispatch(a) );
 
-    [ new fromEth.GetAccounts(), new fromEth.GetAccountBalance()]
-    .forEach(a => this.store.dispatch(a) );
-
-
-    this.accounts$ = this.store.pipe(select(fromEth.getAllAccounts));
     this.defaultAcc$ = this.store.pipe(select(fromEth.getDefaultAccount));
     this.balance$ = this.store.pipe(select(fromEth.getAccountBalance));
-
+    this.accounts$ = this.store.pipe(select(fromEth.getAllAccounts));
   }
 
 }

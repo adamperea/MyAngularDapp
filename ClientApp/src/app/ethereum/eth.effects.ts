@@ -51,20 +51,25 @@ This code use the new way to connect to the MetaMask.
       InitEther$ = this.actions$.pipe(
         ofType(fromAction.ActionTypes.INIT_ETH),
         exhaustMap((action: fromAction.InitEth) => {
+
           if ('enable' in this.web3.currentProvider) {
 
+            /*
+            baed on https://medium.com/metamask/https-medium-com-metamask-breaking-change-injecting-web3-7722797916a8
+            This method returns a Promise that’s either resolved with user accounts after user approval,
+             or rejected with an Error after user rejection.
+            */
             // !!! here we are using the from operator to convert Promise to Observable
             // see https://www.learnrxjs.io/operators/creation/from.html
             return from(this.web3.currentProvider.enable()).pipe(
               tap((ethAccounts: string[]) =>
-                console.log('User approve access to web3. User accounts are:', ethAccounts)
+                console.log('User granted access Ethereum provider to user accounts', ethAccounts)
               ),
-
 
               switchMap((ethAccounts: string[]) => {
 
                 if (ethAccounts.length === 0) {
-                  return [new fromAction.EthError(new Error('No accounts available'))];
+                  return [new fromAction.EthError(new Error('Can not get any user accounts'))];
 
                 }
 
@@ -74,9 +79,10 @@ This code use the new way to connect to the MetaMask.
                 // set the provider for the smart contract
                 this.smartContract.setProvider(this.web3.currentProvider);
 
-                // dispatch action that everything is ready
+                // dispatch multiple actions at ones
                 return  [
                     new fromAction.InitEthSuccess(),
+                    new fromAction.GetAccountsSuccess(ethAccounts),
                     new fromAction.SetDefaultAccountSuccess(ethAccounts[0])
                   ];
 
