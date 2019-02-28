@@ -20,12 +20,12 @@ export const DROP_POKE_ANIMATION = trigger('dropPoke', [
 
 
 @Component({
-  selector: 'app-zero',
+  selector: 'app-pokemon',
   animations: [DROP_POKE_ANIMATION],
-  templateUrl: './zero.component.html',
-  styleUrls: ['./zero.component.css']
+  templateUrl: './pokemon.component.html',
+  styleUrls: ['./pokemon.component.css']
 })
-export class ZeroComponent {
+export class PokemonComponent {
 
 
 }

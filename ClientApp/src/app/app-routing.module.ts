@@ -3,26 +3,25 @@ import { Routes, RouterModule } from '@angular/router';
 
 import * as guards from '../app/ethereum/guards';
 
-import { ZeroComponent } from './components/zero/zero.component';
+import { PokemonComponent } from './components/pokemon/pokemon.component';
 
 const routes: Routes = [
   {
-    path: '', redirectTo: '/zero', pathMatch: 'full',
+    path: '', redirectTo: '/pokey-home', pathMatch: 'full',
   },
   {
-    path: 'zero',
-    component: ZeroComponent,
+    path: 'pokey-home',
+    component: PokemonComponent,
   },
   {
-    path: 'accounts',
+    path: 'eth-accounts',
     loadChildren: './ethereum/eth.module#EthModule',
     canActivate: [guards.EthInitGuard],
-},
-{
-  path: 'attacks',
-  loadChildren: './attack-change/attack-change.module#AttackChangeModule',
-  canActivate: [guards.EthInitGuard],
-},
+  },
+  {
+    path: 'pokey-attacks',
+    loadChildren: './attack-change/attack-change.module#AttackChangeModule',
+  },
 ];
 
 @NgModule({

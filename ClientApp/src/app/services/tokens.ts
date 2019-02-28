@@ -1,5 +1,4 @@
 import { InjectionToken} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import Web3 from 'web3';
 import TruffleContract from 'truffle-contract';
 import ContractAbi from '../../../../build/contracts/PokemonAttack.json';

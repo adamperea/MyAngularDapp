@@ -18,15 +18,15 @@ import { environment } from '../environments/environment'; // Angular CLI enviro
 
 
 import { AppComponent } from './app.component';
-import { NavComponent } from './components/nav/nav.component';
-import {ZeroComponent} from './components/zero/zero.component';
+import { HomePanelComponent } from './components/home-panel/home-panel.component';
+import { PokemonComponent} from './components/pokemon/pokemon.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
-    ZeroComponent
+    HomePanelComponent,
+    PokemonComponent
   ],
   imports: [
     BrowserModule,
