@@ -2,7 +2,7 @@
     <!-- <h2 class="mat-h2">Blockchain accounts</h2> -->
 
     <mat-list>
-      <h3 mat-subheader> Default account info:</h3>
+      <h3 mat-subheader> Default account information</h3>
       <mat-list-item>
 
         <div matLine fxLayout="row" fxLayoutAlign="start center">
@@ -15,7 +15,7 @@
         <div matLine matLine fxLayout="row" fxLayoutAlign="start center">
            <span fxFlex='20'>Balance:</span>
            <span fxFex>
-              <mat-chip color="warn" selected> {{balance$ | async}}</mat-chip>
+              <mat-chip color="primary" selected> {{balance$ | async}}</mat-chip>
            </span>
 
         </div>
@@ -24,10 +24,24 @@
 
       <mat-divider></mat-divider>
 
+    <!--
       <h3 mat-subheader> List of available accounts:</h3>
-      <mat-list-item *ngFor="let address of accounts$ | async">
-        <h4 class="mat-h4"> {{address}} </h4>
-      </mat-list-item>
+          <mat-list-item *ngFor="let address of accounts$ | async">
+            <h4 class="mat-h4"> {{address}} </h4>
+          </mat-list-item>
+    -->
+
+    <h3 mat-subheader> Click to manage Groundon fast attacks on Ethereum Blockchain</h3>
+    <mat-list-item>
+
+      <a mat-flat-button color="warn" routerLink="/pokey-attacks"
+            routerLinkActiveOptions="{ exact: true }">
+            Groundon Fast Attacks
+      </a>
+
+    </mat-list-item>
+
+
 
     </mat-list>
 
