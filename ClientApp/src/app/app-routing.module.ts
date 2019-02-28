@@ -14,7 +14,7 @@ const routes: Routes = [
     component: PokemonComponent,
   },
   {
-    path: 'eth-accounts',
+    path: 'eth-portal',
     loadChildren: './ethereum/eth.module#EthModule',
     canActivate: [guards.EthInitGuard],
   },
