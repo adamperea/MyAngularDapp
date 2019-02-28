@@ -8,23 +8,31 @@
       <mat-card-subtitle>Pokemon {{ pokemonName }} on Ethereum blockchain</mat-card-subtitle>
     </mat-card-header>
 
-    <mat-card-actions>
-      <a mat-stroked-button  routerLink="/eth-accounts"
-         routerLinkActive="active-link"
-         routerLinkActiveOptions="{ exact: true }"
-         routerLinkActiveOptions="true">
-             Connect To Blockchain
-      </a>
+    <mat-card-actions fxLayout="row" fxLayoutAlign="center start">
+
+            <a fxFlexAlign="center" mat-stroked-button color="warn"
+              routerLink="/eth-accounts"
+              routerLinkActive="active-link"
+              routerLinkActiveOptions="{ exact: true }"
+              routerLinkActiveOptions="true">
+                  Ethereum Blockchain Account
+            </a>
+
+    </mat-card-actions>
 
 
-      <a mat-stroked-button  routerLink="/pokey-attacks"
+
+<!--
+  <a mat-stroked-button  routerLink="/pokey-attacks"
         routerLinkActive="active-link"
         routerLinkActiveOptions="{ exact: true }"
         routerLinkActiveOptions="true"
         >Manage Fast Attacks</a
       >
+-->
 
-    </mat-card-actions>
+
+
 
     <mat-card-content>
       <router-outlet></router-outlet>
