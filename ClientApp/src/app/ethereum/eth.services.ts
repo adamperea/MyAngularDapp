@@ -3,15 +3,11 @@ import { Injectable, Inject } from '@angular/core';
 import { WEB3 } from '../services/tokens';
 import Web3 from 'web3';
 
-// RXJS
-/*
-!!! here we using bindNodeCallback. To be continue with explanation and example.....
-*/
 import { Observable, of, from } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 
 @Injectable()
-export class AccountsService {
+export class EthService {
 
     constructor(@Inject(WEB3) private web3: Web3) {
      }

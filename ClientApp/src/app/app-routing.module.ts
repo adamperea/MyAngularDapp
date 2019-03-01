@@ -22,6 +22,8 @@ const routes: Routes = [
     path: 'pokey-attacks',
     loadChildren: './attack-change/attack-change.module#AttackChangeModule',
   },
+
+
 ];
 
 @NgModule({

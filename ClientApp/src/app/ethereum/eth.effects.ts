@@ -10,7 +10,7 @@ import { WEB3, SmartContract } from '../services/tokens';
 import Web3 from 'web3';
 import {TruffleContract} from 'truffle-contract';
 
-import { AccountsService } from './eth.services';
+import { EthService } from './eth.services';
 import * as fromAction from './eth.actions';
 
 
@@ -21,7 +21,7 @@ export class EthEffects {
     private actions$: Actions<fromAction.EthActionsUnion>,
     @Inject(WEB3) private web3: Web3,
     @Inject(SmartContract) private smartContract: TruffleContract,
-    private accSrv: AccountsService
+    private ethSrv: EthService
   ) {}
 
 
@@ -76,7 +76,7 @@ This code use the new way to connect to the MetaMask.
                 }
 
                 // set default account
-                this.accSrv.defaultAccount = ethAccounts[0];
+                this.ethSrv.defaultAccount = ethAccounts[0];
 
                 // set the provider for the smart contract
                 this.smartContract.setProvider(this.web3.currentProvider);
@@ -103,7 +103,7 @@ This code use the new way to connect to the MetaMask.
   @Effect()
     GetAccounts$: Observable<Action> = this.actions$.pipe(
       ofType(fromAction.ActionTypes.GET_ACCOUNTS),
-      switchMap(() => this.accSrv.getAccounts().pipe(
+      switchMap(() => this.ethSrv.getAccounts().pipe(
             map((accounts: string[]) => new fromAction.GetAccountsSuccess(accounts)),
             catchError(err => of(new fromAction.EthError(err)))
           )),
@@ -116,7 +116,7 @@ This code use the new way to connect to the MetaMask.
       ofType(fromAction.ActionTypes.SET_DEFAULT_ACCOUNT),
       map((action: fromAction.SetDefaultAccount) => {
 
-         this.accSrv.defaultAccount = action.payload;
+         this.ethSrv.defaultAccount = action.payload;
 
          return new fromAction.SetDefaultAccountSuccess(action.payload);
       })
@@ -127,7 +127,7 @@ This code use the new way to connect to the MetaMask.
   @Effect()
   GetAccountBalance$: Observable<Action> = this.actions$.pipe(
     ofType(fromAction.ActionTypes.GET_CURRENT_BALANCE),
-    switchMap(() => this.accSrv.getAccountBalance().pipe(
+    switchMap(() => this.ethSrv.getAccountBalance().pipe(
           map((balance: string) => new fromAction.GetAccountBalanceSuccess(balance)),
           catchError(err => of(new fromAction.EthError(err)))
         )),

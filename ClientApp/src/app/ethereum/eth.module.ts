@@ -1,43 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule, FlexLayoutModule } from '../shared';
 
-//NGRX
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './eth.reducers';
 import { EthEffects } from './eth.effects';
 
-// Services
-import { AccountsService } from './eth.services';
+import { EthService } from './eth.services';
+import {EthRoutingModule} from './eth-routing.module';
 
-import { EthAccountComponent } from './components/eth-account/eth-account.component';
-
-
-const routes: Routes = [
-
-  {
-      path: '',
-      component: EthAccountComponent,
-  },
-
-];
+import {EthPanelComponent} from './components/eth-panel/eth-panel.component';
 
 
 @NgModule({
-  declarations: [EthAccountComponent],
-  exports: [EthAccountComponent],   // we use it from home.component which is defined in app.module
+  declarations: [EthPanelComponent],
   imports: [
     CommonModule,
     MaterialModule,
     FlexLayoutModule,
-
-    RouterModule.forChild(routes),
+    EthRoutingModule,
 
     StoreModule.forFeature('ethState', reducers),
     EffectsModule.forFeature([EthEffects])
   ],
-  providers: [AccountsService]
+  providers: [EthService]
 })
 export class EthModule { }

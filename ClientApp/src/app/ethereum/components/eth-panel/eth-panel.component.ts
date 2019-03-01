@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject  } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 // NGRX
 import { Store, select } from '@ngrx/store';
@@ -9,11 +9,11 @@ import { Observable } from 'rxjs';
 
 
 @Component({
-  selector: 'app-eth-account',
-  templateUrl: './eth-account.component.html',
-  styleUrls: ['./eth-account.component.css']
+  selector: 'app-eth-panel',
+  templateUrl: './eth-panel.component.html',
+  styleUrls: ['./eth-panel.component.css']
 })
-export class EthAccountComponent implements OnInit {
+export class EthPanelComponent implements OnInit {
 
   public accounts$: Observable<string[]>;
   public defaultAcc$: Observable<string>;
