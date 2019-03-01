@@ -1,48 +1,49 @@
+<h3 class="mat-h3">Default account information</h3>
 
-    <!-- <h2 class="mat-h2">Blockchain accounts</h2> -->
+<div fxLayout="row" fxLayoutAlign="start center">
+  <span fxFlex="15">Address:</span>
+  <span fxFlex>
+    <mat-chip color="primary" selected>{{ defaultAcc$ | async }}</mat-chip>
+  </span>
+</div>
+<div fxLayout="row" fxLayoutAlign="start center">
+  <span fxFlex="15">Balance:</span>
+  <span fxFex>
+    <mat-chip color="primary" selected> {{ balance$ | async }}</mat-chip>
+  </span>
+</div>
 
-    <mat-list>
-      <h3 mat-subheader> Default account information</h3>
-      <mat-list-item>
+<p></p>
+<mat-divider></mat-divider>
 
-        <div matLine fxLayout="row" fxLayoutAlign="start center">
-          <span fxFlex='20'>Address:</span>
-          <span fxFlex>
-            <mat-chip color="primary" selected>{{defaultAcc$ | async}}</mat-chip>
-          </span>
+<div fxLayout="row" fxLayoutAlign="start center">
+  <span fxFlex="60">
+    <h3 class="mat-h3">Select default account</h3>
 
-        </div>
-        <div matLine matLine fxLayout="row" fxLayoutAlign="start center">
-           <span fxFlex='20'>Balance:</span>
-           <span fxFex>
-              <mat-chip color="primary" selected> {{balance$ | async}}</mat-chip>
-           </span>
+    <mat-radio-group>
+      <mat-radio-button
+        *ngFor="let address of (accounts$ | async)"
+        [value]="address"
+      >
+        {{ address }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </span>
 
-        </div>
+  <span fxFlex>
+      <mat-divider [vertical]="true"></mat-divider>
+  </span>
+  
+  <span fxFlex="35">
+    <h3 class="mat-h3">Manage fast attacks</h3>
 
-      </mat-list-item>
-
-      <mat-divider></mat-divider>
-
-    <!--
-      <h3 mat-subheader> List of available accounts:</h3>
-          <mat-list-item *ngFor="let address of accounts$ | async">
-            <h4 class="mat-h4"> {{address}} </h4>
-          </mat-list-item>
-    -->
-
-    <h3 mat-subheader> Click to manage Groundon fast attacks on Ethereum Blockchain</h3>
-    <mat-list-item>
-
-      <a mat-flat-button color="warn" routerLink="/pokey-attacks"
-            routerLinkActiveOptions="{ exact: true }">
-            Groundon Fast Attacks
-      </a>
-
-    </mat-list-item>
-
-
-
-    </mat-list>
-
-
+    <a
+      mat-flat-button
+      color="warn"
+      routerLink="/pokey-attacks"
+      routerLinkActiveOptions="{ exact: true }"
+    >
+      Groundon Fast Attacks
+    </a>
+  </span>
+</div>
