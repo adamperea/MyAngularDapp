@@ -3,21 +3,24 @@
 <div fxLayout="row" fxLayoutAlign="start center">
   <span fxFlex="15">Address:</span>
   <span fxFlex>
-    <mat-chip color="primary" selected>{{ defaultAcc$ | async }}</mat-chip>
+    <mat-chip color="accent" selected>{{ defaultAcc$ | async }}</mat-chip>
   </span>
 </div>
+<p></p>
 <div fxLayout="row" fxLayoutAlign="start center">
   <span fxFlex="15">Balance:</span>
   <span fxFex>
-    <mat-chip color="primary" selected> {{ balance$ | async }}</mat-chip>
+    <mat-chip color="warn" selected> {{ balance$ | async }}</mat-chip>
   </span>
 </div>
 
 <p></p>
-<mat-divider></mat-divider>
 
-<div fxLayout="row" fxLayoutAlign="start center">
-  <span fxFlex="60">
+<mat-progress-bar mode="determinate"></mat-progress-bar>
+<p></p>
+
+<div fxLayout="row" fxLayoutAlign="start  stretch">
+  <span fxFlex="60" class="inline-block--50">
     <h3 class="mat-h3">Select default account</h3>
 
     <mat-radio-group>
@@ -30,12 +33,9 @@
     </mat-radio-group>
   </span>
 
-  <span fxFlex>
-      <mat-divider [vertical]="true"></mat-divider>
-  </span>
-  
-  <span fxFlex="35">
-    <h3 class="mat-h3">Manage fast attacks</h3>
+
+  <span fxFlex="35" fxFlexOffset="5" class="inline-block--50">
+    <h3 class="mat-h3">Manage Pokemon moves</h3>
 
     <a
       mat-flat-button
