@@ -1,14 +1,7 @@
 import { Action } from '@ngrx/store';
 
 export enum ActionTypes {
-  /**
- * TYPES
- */
-/*
-based on https://medium.com/b2expand/inject-web3-in-angular-6-0-a03ca345892
-The new way to connect to the MetaMask.
- The first time you use this token in your code you should call the enable method of window.ethereum (see effect implementation)
-*/
+ 
   INIT_ETH = '[Eth] Init Ethereum',
   INIT_ETH_SUCCESS = '[Eth] Init Ethereum Success',
   GET_ACCOUNTS = '[Eth] Get All Accounts',
