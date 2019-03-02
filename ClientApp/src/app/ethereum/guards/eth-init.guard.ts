@@ -5,11 +5,12 @@ import { CanActivate } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { map, take, tap, filter, switchMap, catchError } from 'rxjs/operators';
+import {EthAnchorModule} from '../eth.anchor.module';
 import * as fromEth from '../../ethereum';
 
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: EthAnchorModule,
 })
 export class EthInitGuard implements CanActivate {
   constructor(private store: Store<fromEth.AppState>) {}

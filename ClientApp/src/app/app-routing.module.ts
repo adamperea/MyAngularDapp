@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import * as guards from '../app/ethereum/guards';
-
 import { PokemonComponent } from './components/pokemon/pokemon.component';
 
 const routes: Routes = [
@@ -16,7 +14,6 @@ const routes: Routes = [
   {
     path: 'eth-portal',
     loadChildren: './ethereum/eth.module#EthModule',
-    canActivate: [guards.EthInitGuard],
   },
   {
     path: 'pokey-attacks',

@@ -8,8 +8,8 @@ import { reducers } from './eth.reducers';
 import { EthEffects } from './eth.effects';
 
 import { EthService } from './eth.services';
-import {EthRoutingModule} from './eth-routing.module';
-
+import { EthRoutingModule} from './eth-routing.module';
+import {EthAnchorModule} from './eth.anchor.module';
 import {EthPanelComponent} from './components/eth-panel/eth-panel.component';
 
 
@@ -20,6 +20,7 @@ import {EthPanelComponent} from './components/eth-panel/eth-panel.component';
     MaterialModule,
     FlexLayoutModule,
     EthRoutingModule,
+    EthAnchorModule,
 
     StoreModule.forFeature('ethState', reducers),
     EffectsModule.forFeature([EthEffects])
