@@ -52,4 +52,14 @@ export class EthPanelComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
+  onRadioChange(event): void {
+
+    console.log(event.source.name, event.value);
+    // mat-radio-group-0 0xa8a4b332674b34e127a7a5ebc242ee54d482329a
+    const addr = this.frmGroup.value.defoAdr;
+    console.log('addr', addr);
+
+    this.store.dispatch(new fromEth.SetDefaultAccount(addr));
+  }
+
 }

@@ -24,11 +24,12 @@
     <h3 class="mat-h3">Select default account</h3>
 
     <form [formGroup]="frmGroup">
-        <mat-radio-group formControlName="defoAdr">
+        <mat-radio-group formControlName="defoAdr"  (change)="onRadioChange($event)">
             <mat-radio-button *ngFor="let address of (accounts$ | async)"
               [value]="address">
               {{ address }}
             </mat-radio-button>
+            <mat-radio-button >Popi</mat-radio-button>
           </mat-radio-group>
     </form>
 
