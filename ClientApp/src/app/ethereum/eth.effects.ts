@@ -90,7 +90,7 @@ This code use the new way to connect to the MetaMask.
 
               }),
 
-              // user reject access to web3 account
+              // User denied account access
               catchError((err: any) => of(new fromAction.EthError(err)))
             );
           }
