@@ -20,7 +20,7 @@ export class AttackChangeEffects {
 
 
    @Effect()
-    GetAccount$: Observable<Action> = this.actions$.pipe(
+    GetAttack$: Observable<Action> = this.actions$.pipe(
       ofType(fromAction.ActionTypes.GET_ATTACK),
       switchMap(() => this.ethSrv.getAttack().pipe(
             map((name: string) => new fromAction.GetAttackSuccess(name)),
