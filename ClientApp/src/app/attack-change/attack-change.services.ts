@@ -33,7 +33,8 @@ export class AttackChangeService {
     public setAttack(name: string): Observable<any> {
 
         return from(this.smartContract.deployed()).pipe(
-            switchMap((instance: any) => from(instance.changeAttack(name, {from: this.web3.eth.defaultAccount}))
+            switchMap((instance: any) =>
+                   from(instance.changeAttack(name, {from: this.web3.eth.defaultAccount}))
 
             ));
 
